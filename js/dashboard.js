@@ -4,6 +4,7 @@
 
 import {
   mockAthlete,
+  mockPreparation,
   mockReadiness,
   mockDailyCheckin,
   mockTodayActions,
@@ -22,16 +23,6 @@ export const dashboard = {
     this.render();
     this.updateHeader();
     this.attachEventListeners();
-  },
-
-  appleWatchState: 'idle',
-
-  appleWatchDemoData: {
-    sleep: '7h 24m',
-    hrv: '68 ms',
-    restingHR: '48 bpm',
-    workout: 'Tempo run · 5.2 mi · 38 min',
-    steps: '11,832 steps',
   },
 
   /**
@@ -74,12 +65,10 @@ export const dashboard = {
         ${this.renderInsight()}
         ${this.renderPreparation()}
         ${this.renderAthleteIQ()}
-        ${this.renderDataImport()}
         ${this.renderActions()}
         ${this.renderTimeline()}
       </div>
     `;
-    this.attachEventListeners();
   },
 
   /**
@@ -301,104 +290,6 @@ export const dashboard = {
     `;
   },
 
-  /**   * Apple Watch Connect prototype
-   */
-  renderDataImport() {
-    const state = this.appleWatchState || 'idle';
-    if (state === 'permission') return this.renderAppleWatchPermission();
-    if (state === 'loading') return this.renderAppleWatchLoading();
-    if (state === 'success') return this.renderAppleWatchSuccess();
-
-    return `
-      <div class="dash-data-import">
-        <div class="section-header">
-          <h2 class="section-title">Connect Apple Watch</h2>
-          <span class="section-action">Demo mode</span>
-        </div>
-        <div class="glass-card watch-connect-card">
-          <div class="watch-connect-copy">
-            <div class="watch-connect-title">Sync your Watch for prep-ready insights</div>
-            <div class="watch-connect-subtitle">This is a mock demo flow. No real Apple Health integration is connected yet.</div>
-          </div>
-          <button class="btn btn-primary" id="connect-apple-watch-btn">Connect Apple Watch</button>
-        </div>
-      </div>
-    `;
-  },
-
-  renderAppleWatchPermission() {
-    return `
-      <div class="dash-data-import">
-        <div class="section-header">
-          <h2 class="section-title">Apple Watch Permission</h2>
-          <span class="section-action">Demo only</span>
-        </div>
-        <div class="glass-card watch-connect-card">
-          <div class="watch-connect-copy">
-            <div class="watch-connect-title">Allow AthletiQ to read your activity data</div>
-            <div class="watch-connect-subtitle">In a full app, this would request permission to read sleep, HRV, resting HR, steps, and workouts.</div>
-          </div>
-          <div class="watch-permission-actions">
-            <button class="btn btn-secondary" id="cancel-apple-watch-btn">Cancel</button>
-            <button class="btn btn-primary" id="allow-apple-watch-btn">Allow Demo Data</button>
-          </div>
-        </div>
-      </div>
-    `;
-  },
-
-  renderAppleWatchLoading() {
-    return `
-      <div class="dash-data-import">
-        <div class="section-header">
-          <h2 class="section-title">Connecting Apple Watch</h2>
-          <span class="section-action">Demo in progress</span>
-        </div>
-        <div class="glass-card watch-connect-card">
-          <div class="watch-loading">
-            <div class="spinner"></div>
-            <div class="watch-loading__text">Syncing demo health metrics…</div>
-          </div>
-        </div>
-      </div>
-    `;
-  },
-
-  renderAppleWatchSuccess() {
-    const data = this.appleWatchDemoData;
-    return `
-      <div class="dash-data-import">
-        <div class="section-header">
-          <h2 class="section-title">Apple Watch Synced</h2>
-          <span class="section-action">Demo data</span>
-        </div>
-        <div class="glass-card watch-connect-card">
-          <div class="watch-sync-grid">
-            <div class="watch-sync-item">
-              <span class="watch-sync-label">Sleep</span>
-              <strong>${data.sleep}</strong>
-            </div>
-            <div class="watch-sync-item">
-              <span class="watch-sync-label">HRV</span>
-              <strong>${data.hrv}</strong>
-            </div>
-            <div class="watch-sync-item">
-              <span class="watch-sync-label">Resting HR</span>
-              <strong>${data.restingHR}</strong>
-            </div>
-            <div class="watch-sync-item">
-              <span class="watch-sync-label">Workout</span>
-              <strong>${data.workout}</strong>
-            </div>
-            <div class="watch-sync-item watch-sync-full">
-              <span class="watch-sync-label">Steps</span>
-              <strong>${data.steps}</strong>
-            </div>
-          </div>
-          <div class="demo-note">This is demo data for now. Apple Watch sync is a prototype experience.</div>
-        </div>
-      </div>
-    `;
   /**
    * Recent Timeline
    */
@@ -473,38 +364,8 @@ export const dashboard = {
       });
     }
 
-    // Apple Watch connect prototype
-    const connectBtn = document.getElementById('connect-apple-watch-btn');
-    const allowBtn = document.getElementById('allow-apple-watch-btn');
-    const cancelBtn = document.getElementById('cancel-apple-watch-btn');
-    const manualBtn = document.getElementById('manual-entry-btn');
+    // FAB
     const fab = document.getElementById('fab-btn');
-
-    if (connectBtn) {
-      connectBtn.addEventListener('click', () => {
-        this.setAppleWatchState('permission');
-      });
-    }
-
-    if (allowBtn) {
-      allowBtn.addEventListener('click', () => {
-        this.setAppleWatchState('loading');
-        setTimeout(() => this.setAppleWatchState('success'), 1400);
-      });
-    }
-
-    if (cancelBtn) {
-      cancelBtn.addEventListener('click', () => {
-        this.setAppleWatchState('idle');
-      });
-    }
-
-    if (manualBtn) {
-      manualBtn.addEventListener('click', () => {
-        this.openManualEntry();
-      });
-    }
-
     if (fab) {
       fab.addEventListener('click', () => {
         this.openCheckin();
@@ -542,13 +403,5 @@ export const dashboard = {
       .catch(() => {
         console.log('Check-in module loading...');
       });
-  },
-
-  /**
-   * Set Apple Watch prototype state
-   */
-  setAppleWatchState(state) {
-    this.appleWatchState = state;
-    this.render();
   },
 };
