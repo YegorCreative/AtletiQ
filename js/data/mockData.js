@@ -93,7 +93,7 @@ export const mockTodayActions = [
   },
 ];
 
-/* Timeline events */
+/* Timeline events (Athlete Memory) */
 export const mockTimelineEvents = [
   {
     id: 'evt_1',
@@ -101,32 +101,57 @@ export const mockTimelineEvents = [
     title: 'Morning Run completed',
     detail: '6.2 mi · 48:23 · Easy',
     time: 'Today, 6:30 AM',
+    date: 'Today',
     icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
   },
   {
     id: 'evt_2',
-    type: 'checkin',
-    title: 'Sleep improved',
-    detail: 'Quality score: 88 · +45m deep sleep',
-    time: 'Today, 6:15 AM',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+    type: 'reflection',
+    title: 'Evening Journal',
+    detail: 'Mood: Focused · Stress: Low',
+    quote: '"Felt unstoppable today. The new nutrition strategy finally clicked during the long run."',
+    time: 'Yesterday, 8:00 PM',
+    date: 'Yesterday',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
   },
   {
     id: 'evt_3',
-    type: 'mobility',
-    title: 'Mobility session',
-    detail: 'Lower body · 15 min routine',
-    time: 'Today, 8:00 AM',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+    type: 'milestone',
+    title: 'Fastest 5k in 6 months',
+    detail: 'Pace: 5:42/mi · HR Avg: 168 bpm',
+    highlight: 'Breakthrough',
+    time: 'Yesterday, 7:15 AM',
+    date: 'Yesterday',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
   },
   {
     id: 'evt_4',
-    type: 'nutrition',
-    title: 'Hydration low',
-    detail: '4 glasses vs 8 target',
-    time: 'Yesterday, 9:00 PM',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
+    type: 'insight',
+    title: 'Recovery Trend',
+    detail: 'Your Resting HR dropped by 3bpm this week.',
+    time: '2 days ago',
+    date: 'April 14',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
   },
+  {
+    id: 'evt_5',
+    type: 'mobility',
+    title: 'Mobility session',
+    detail: 'Lower body · 15 min routine',
+    time: '3 days ago',
+    date: 'April 13',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+  },
+  {
+    id: 'evt_6',
+    type: 'milestone',
+    title: 'Consistency Streak',
+    detail: 'Hit 100% of planned workouts for 4 weeks.',
+    highlight: 'Momentum',
+    time: '1 week ago',
+    date: 'April 8',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+  }
 ];
 
 /* Regimen habits */
