@@ -196,3 +196,123 @@ export const mockWeekData = {
   saturday:  { training: 7.5, recovery: 9.0, sleep: 9.0 },
   sunday:    { training: 5.0, recovery: 9.5, sleep: 8.5 },
 };
+
+/* New data structures for revised app direction */
+export const mockTodaysFocus = {
+  title: "Today's Focus",
+  biggestOpportunity: "Mobility + Sleep Consistency",
+  supportingText: "Small improvements here will have the biggest impact on your preparation.",
+  preparationStatus: "Building",
+  recoveryStatus: "Good",
+};
+
+export const mockPreparationPillars = [
+  {
+    id: 'pillar_1',
+    name: 'Training',
+    status: 'Good',
+    progress: 85,
+    explanation: 'Consistent training builds aerobic base and strength.',
+    opportunity: 'Medium',
+  },
+  {
+    id: 'pillar_2',
+    name: 'Recovery',
+    status: 'Good',
+    progress: 90,
+    explanation: 'Quality recovery enables consistent performance.',
+    opportunity: 'Low',
+  },
+  {
+    id: 'pillar_3',
+    name: 'Nutrition',
+    status: 'Moderate',
+    progress: 65,
+    explanation: 'Proper fueling supports training and recovery.',
+    opportunity: 'High',
+  },
+  {
+    id: 'pillar_4',
+    name: 'Mobility',
+    status: 'Low',
+    progress: 40,
+    explanation: 'Mobility improves durability, movement quality, and injury prevention.',
+    opportunity: 'High',
+    eliteBenchmark: '4–6 sessions/week',
+    yourConsistency: '2/week',
+  },
+  {
+    id: 'pillar_5',
+    name: 'Strength',
+    status: 'Moderate',
+    progress: 70,
+    explanation: 'Strength training enhances power and injury resilience.',
+    opportunity: 'Medium',
+  },
+  {
+    id: 'pillar_6',
+    name: 'Mental Readiness',
+    status: 'Good',
+    progress: 80,
+    explanation: 'Mental preparation optimizes focus and motivation.',
+    opportunity: 'Low',
+  },
+];
+
+export const mockAthleteIQ = [
+  {
+    id: 'iq_1',
+    pillar: 'Mobility',
+    whyItMatters: 'Mobility improves durability, movement efficiency, and injury prevention.',
+    elitePriorities: '4–6 short mobility sessions per week',
+    yourConsistency: '2 sessions/week',
+    opportunity: 'High',
+  },
+  {
+    id: 'iq_2',
+    pillar: 'Sleep',
+    whyItMatters: 'Quality sleep enhances recovery, learning, and performance.',
+    elitePriorities: '7–9 hours of consistent sleep',
+    yourConsistency: '6–8 hours, inconsistent',
+    opportunity: 'High',
+  },
+  {
+    id: 'iq_3',
+    pillar: 'Nutrition',
+    whyItMatters: 'Proper fueling supports energy, recovery, and adaptation.',
+    elitePriorities: 'Balanced macros, timing around workouts',
+    yourConsistency: 'Good post-workout, inconsistent breakfast',
+    opportunity: 'Medium',
+  },
+];
+
+export const mockTodaysActions = {
+  completed: 1,
+  total: 4,
+  actions: [
+    {
+      id: 'action_1',
+      title: 'Complete 12 minute mobility routine',
+      why: 'Mobility is your biggest current opportunity',
+      completed: true,
+    },
+    {
+      id: 'action_2',
+      title: 'Hydrate with electrolytes',
+      why: 'Hydration was low yesterday',
+      completed: false,
+    },
+    {
+      id: 'action_3',
+      title: 'Log remaining meals',
+      why: 'Nutrition data is incomplete',
+      completed: false,
+    },
+    {
+      id: 'action_4',
+      title: 'Evening review',
+      why: 'Confirm today\'s inputs before tomorrow',
+      completed: false,
+    },
+  ],
+};

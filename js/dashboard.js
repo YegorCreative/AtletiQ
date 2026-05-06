@@ -9,6 +9,10 @@ import {
   mockDailyCheckin,
   mockTodayActions,
   mockTimelineEvents,
+  mockTodaysFocus,
+  mockPreparationPillars,
+  mockAthleteIQ,
+  mockTodaysActions,
 } from './data/mockData.js';
 
 export const dashboard = {
@@ -60,6 +64,7 @@ export const dashboard = {
         ${this.renderCheckinBanner()}
         ${this.renderInsight()}
         ${this.renderPreparation()}
+        ${this.renderAthleteIQ()}
         ${this.renderActions()}
         ${this.renderTimeline()}
       </div>
@@ -67,43 +72,20 @@ export const dashboard = {
   },
 
   /**
-   * Hero — Readiness Ring + Status
+   * Today's Focus — Biggest opportunity
    */
   renderHero() {
-    const { score, label } = mockReadiness;
-    const radius = 54;
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (score / 100) * circumference;
+    const { title, biggestOpportunity, supportingText, preparationStatus, recoveryStatus } = mockTodaysFocus;
 
     return `
       <div class="dash-hero animate-in">
-        <div class="dash-hero__header">
-          <div class="dash-hero__ring">
-            <div class="readiness-ring">
-              <svg class="readiness-ring__svg" viewBox="0 0 120 120">
-                <circle class="readiness-ring__bg" cx="60" cy="60" r="${radius}" />
-                <circle
-                  class="readiness-ring__progress"
-                  cx="60" cy="60" r="${radius}"
-                  stroke-dasharray="${circumference}"
-                  stroke-dashoffset="${offset}"
-                  style="--ring-circumference: ${circumference}; --ring-offset: ${offset};"
-                />
-              </svg>
-              <div class="readiness-ring__center">
-                <span class="readiness-ring__score">${score}</span>
-                <span class="readiness-ring__label">READY</span>
-              </div>
-            </div>
-          </div>
-          <div class="dash-hero__info">
-            <div class="dash-hero__status">
-              <div class="status-dot green"></div>
-              <span class="dash-hero__status-text">RECOVERY: ${label}</span>
-            </div>
-            <div class="dash-hero__subtitle">
-              Based on sleep, load, and nervous system state.
-            </div>
+        <div class="todays-focus-card">
+          <div class="todays-focus-card__title">${title}</div>
+          <div class="todays-focus-card__opportunity">${biggestOpportunity}</div>
+          <div class="todays-focus-card__text">${supportingText}</div>
+          <div class="todays-focus-card__status">
+            <span class="status-badge">Preparation: ${preparationStatus}</span>
+            <span class="status-badge">Recovery: ${recoveryStatus}</span>
           </div>
         </div>
       </div>
@@ -179,29 +161,23 @@ export const dashboard = {
   },
 
   /**
-   * Preparation — 6 Pillars
+   * Preparation Pillars — 6 Pillars
    */
   renderPreparation() {
-    const statusMap = {
-      strong: 'Strong',
-      good: 'Good',
-      moderate: 'Moderate',
-      low: 'Low',
-    };
-
-    const bars = mockPreparation
+    const bars = mockPreparationPillars
       .map(
         (p) => `
         <div class="prep-bar">
-          <div class="prep-bar__icon ${p.color}">${p.icon}</div>
+          <div class="prep-bar__icon ${p.status.toLowerCase()}">${p.name.charAt(0)}</div>
           <div class="prep-bar__content">
             <div class="prep-bar__header">
-              <span class="prep-bar__label">${p.label}</span>
-              <span class="prep-bar__status ${p.color}">${statusMap[p.status] || p.status}</span>
+              <span class="prep-bar__label">${p.name}</span>
+              <span class="prep-bar__status ${p.status.toLowerCase()}">${p.status}</span>
             </div>
             <div class="prep-bar__track">
-              <div class="prep-bar__fill ${p.color}" style="--bar-width: ${p.score}%; width: ${p.score}%;"></div>
+              <div class="prep-bar__fill ${p.status.toLowerCase()}" style="--bar-width: ${p.progress}%; width: ${p.progress}%;"></div>
             </div>
+            <div class="prep-bar__explanation">${p.explanation}</div>
           </div>
         </div>
       `,
@@ -211,7 +187,7 @@ export const dashboard = {
     return `
       <div class="dash-preparation">
         <div class="section-header">
-          <h2 class="section-title">Preparation</h2>
+          <h2 class="section-title">Preparation Pillars</h2>
           <span class="section-action">Details →</span>
         </div>
         <div class="glass-card">
@@ -227,11 +203,10 @@ export const dashboard = {
    * Today's Actions
    */
   renderActions() {
-    const completed = mockTodayActions.filter((a) => a.completed).length;
-    const total = mockTodayActions.length;
+    const { completed, total, actions } = mockTodaysActions;
     const pct = Math.round((completed / total) * 100);
 
-    const cards = mockTodayActions
+    const cards = actions
       .map(
         (a) => `
         <div class="action-card ${a.completed ? 'completed' : ''}" data-action-id="${a.id}">
@@ -242,9 +217,14 @@ export const dashboard = {
           </div>
           <div class="action-card__body">
             <div class="action-card__title">${a.title}</div>
-            <div class="action-card__subtitle">${a.subtitle}</div>
+            <div class="action-card__subtitle">${a.why}</div>
           </div>
-          <div class="action-card__icon">${a.icon}</div>
+          <div class="action-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
         </div>
       `,
       )
@@ -264,6 +244,47 @@ export const dashboard = {
             <div class="progress__bar" style="width: ${pct}%;"></div>
           </div>
           <span class="actions-progress__text">${pct}%</span>
+        </div>
+      </div>
+    `;
+  },
+
+  /**
+   * Athlete IQ — Education & Insights
+   */
+  renderAthleteIQ() {
+    const cards = mockAthleteIQ
+      .map(
+        (iq) => `
+        <div class="iq-card">
+          <div class="iq-card__header">
+            <div class="iq-card__pillar">${iq.pillar}</div>
+            <div class="iq-card__opportunity ${iq.opportunity.toLowerCase()}">${iq.opportunity} Opportunity</div>
+          </div>
+          <div class="iq-card__content">
+            <div class="iq-card__why">${iq.whyItMatters}</div>
+            <div class="iq-card__elite">
+              <strong>Elite Priority:</strong> ${iq.elitePriorities}
+            </div>
+            <div class="iq-card__you">
+              <strong>Your Consistency:</strong> ${iq.yourConsistency}
+            </div>
+          </div>
+        </div>
+      `,
+      )
+      .join('');
+
+    return `
+      <div class="dash-athlete-iq">
+        <div class="section-header">
+          <h2 class="section-title">Athlete IQ</h2>
+          <span class="section-action">Learn More →</span>
+        </div>
+        <div class="glass-card">
+          <div class="iq-list stagger">
+            ${cards}
+          </div>
         </div>
       </div>
     `;
