@@ -647,7 +647,8 @@
   color: var(--color-text-secondary);
 }
 
-.input-field {
+.input-field,
+.textarea-field {
   width: 100%;
   padding: var(--space-3) var(--space-4);
   font-size: var(--text-base);
@@ -658,12 +659,22 @@
   transition: all var(--transition-base);
 }
 
-.input-field:focus {
-  border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px var(--color-primary-subtle);
+.textarea-field {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+  font-family: inherit;
 }
 
-.input-field::placeholder { color: var(--color-text-tertiary); }
+.input-field:focus,
+.textarea-field:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-subtle);
+  outline: none;
+}
+
+.input-field::placeholder,
+.textarea-field::placeholder { color: var(--color-text-tertiary); }
 
 /* ---- SLIDER (1-5 scale) ---- */
 .slider-group {
