@@ -57,40 +57,55 @@ export const mockDailyCheckin = {
   },
 };
 
-/* Today's actions */
-export const mockTodayActions = [
+/* The Daily Directive */
+export const mockDailyDirective = "Today is a heavy load day. Your only focus is staying under 150bpm during the long run and hitting your carb window immediately after.";
+
+/* Required Plan (Non-negotiables) */
+export const mockRequiredPlan = [
   {
-    id: 'action_1',
-    title: 'Complete mobility routine',
-    subtitle: '15 min hip & ankle work',
-    category: 'mobility',
+    id: 'req_1',
+    title: '60 Min Aerobic Base Run',
+    subtitle: 'Keep HR under 150bpm. Stay relaxed.',
+    category: 'training',
     completed: false,
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h.01"/><path d="M4 20h4l1.5-3"/><path d="M9 11l-3 4-2.5-1.5"/><path d="M12 16l3-4 1.5 1.5"/><path d="M15 12V8l-3-4-2 2 1.5 3.5"/></svg>`,
   },
   {
-    id: 'action_2',
-    title: 'Hydrate with electrolytes',
-    subtitle: 'Hydration was low yesterday',
+    id: 'req_2',
+    title: 'Pre-Run Mobility',
+    subtitle: '10 min hip & ankle prep',
+    category: 'mobility',
+    completed: true,
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+  }
+];
+
+/* Actions for Improvement */
+export const mockImprovementActions = [
+  {
+    id: 'imp_1',
+    title: 'Post-Run Fueling Window',
+    subtitle: 'Eat 60g carbs within 30 mins to offset the heavy load.',
+    category: 'nutrition',
+    completed: false,
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+  },
+  {
+    id: 'imp_2',
+    title: 'Hydration Catch-up',
+    subtitle: 'You were 1L short yesterday. Drink 1L before noon.',
     category: 'nutrition',
     completed: false,
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
   },
   {
-    id: 'action_3',
-    title: 'Log evening reflection',
-    subtitle: 'How did today go?',
+    id: 'action_3', // Keep action_3 ID so review.js logic still auto-completes it
+    title: 'Log Evening Reflection',
+    subtitle: 'Clear your mind before sleep.',
     category: 'mental',
     completed: false,
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
-  },
-  {
-    id: 'action_4',
-    title: 'Eat recovery meal after workout',
-    subtitle: 'Protein + carbs within 30 min',
-    category: 'nutrition',
-    completed: true,
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
-  },
+  }
 ];
 
 /* Timeline events (Athlete Memory) */
