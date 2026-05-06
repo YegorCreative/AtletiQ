@@ -11,6 +11,7 @@ export const profile = {
    */
   init() {
     this.render();
+    this.attachListeners();
   },
 
   /**
@@ -34,7 +35,17 @@ export const profile = {
           </div>
           <div class="evolution-hero__info">
             <h2 class="evolution-hero__name">${mockAthlete.fullName}</h2>
-            <p class="evolution-hero__role">${mockAthlete.level} ${mockAthlete.event}</p>
+            <p class="evolution-hero__role">
+              ${mockAthlete.level} 
+              <select class="sport-select" id="profile-sport-select" style="background: transparent; border: none; color: inherit; font: inherit; font-weight: var(--weight-medium); cursor: pointer; text-decoration: underline; text-decoration-color: rgba(16, 185, 129, 0.5); text-underline-offset: 4px; padding: 0;">
+                <option value="800m / 1500m" ${mockAthlete.event === '800m / 1500m' ? 'selected' : ''}>800m / 1500m</option>
+                <option value="5K / 10K" ${mockAthlete.event === '5K / 10K' ? 'selected' : ''}>5K / 10K</option>
+                <option value="Marathon" ${mockAthlete.event === 'Marathon' ? 'selected' : ''}>Marathon</option>
+                <option value="Triathlon" ${mockAthlete.event === 'Triathlon' ? 'selected' : ''}>Triathlon</option>
+                <option value="Cycling" ${mockAthlete.event === 'Cycling' ? 'selected' : ''}>Cycling</option>
+                <option value="CrossFit" ${mockAthlete.event === 'CrossFit' ? 'selected' : ''}>CrossFit</option>
+              </select>
+            </p>
           </div>
           <div class="evolution-hero__phase">
             <span class="evolution-hero__phase-label">Current Block</span>
@@ -140,5 +151,19 @@ export const profile = {
       html += '</div>';
     }
     return html;
+  },
+
+  /**
+   * Attach event listeners
+   */
+  attachListeners() {
+    const sportSelect = document.getElementById('profile-sport-select');
+    if (sportSelect) {
+      sportSelect.addEventListener('change', (e) => {
+        mockAthlete.event = e.target.value;
+        // The mock object is updated. In a real app, you would save this to a database.
+        console.log('Sport updated to:', mockAthlete.event);
+      });
+    }
   }
 };

@@ -4,8 +4,8 @@
 
 export const mockAthlete = {
   id: 'athlete_001',
-  name: 'Alex',
-  fullName: 'Alex Rivera',
+  name: 'Sam',
+  fullName: 'Sam Gausmann',
   role: 'Elite Runner',
   event: '800m / 1500m',
   level: 'Collegiate',
