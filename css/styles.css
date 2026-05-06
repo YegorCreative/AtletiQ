@@ -624,6 +624,107 @@
   line-height: var(--leading-snug);
 }
 
+/* ---- APPLE WATCH CONNECT PROTOTYPE ---- */
+.dash-data-import {
+  animation: fadeInUp 0.5s var(--ease-out) 0.3s both;
+}
+
+.watch-connect-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.watch-connect-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.watch-connect-title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.watch-connect-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.watch-permission-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.watch-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 180px;
+}
+
+.spinner {
+  width: 52px;
+  height: 52px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--color-green-500);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.watch-loading__text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.watch-sync-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.watch-sync-item {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.watch-sync-full {
+  grid-column: 1 / -1;
+}
+
+.watch-sync-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.demo-note {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-snug);
+  margin-top: var(--space-3);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* ============================================
    SCROLLBAR
    ============================================ */
