@@ -552,17 +552,18 @@
 .modal-sheet {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   width: 100%;
   max-width: var(--max-width);
-  max-height: 85vh;
+  max-height: 90dvh;
   background: var(--color-bg-secondary);
   border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
   z-index: var(--z-modal);
   animation: slideUp 0.35s var(--ease-out) both;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-sheet__handle {
@@ -571,6 +572,7 @@
   background: var(--color-border-light);
   border-radius: var(--radius-full);
   margin: var(--space-3) auto var(--space-4);
+  flex-shrink: 0;
 }
 
 .modal-sheet__header {
@@ -578,6 +580,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .modal-sheet__title {
@@ -596,10 +599,13 @@
   color: var(--color-text-secondary);
   cursor: pointer;
   border: none;
+  flex-shrink: 0;
 }
 
 .modal-sheet__body {
-  padding: 0 var(--space-4) var(--space-8);
+  padding: 0 var(--space-4) calc(var(--space-8) + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ---- INPUT FIELD ---- */
