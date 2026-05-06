@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AthletiQ - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <div class="app-header__content">
+          <div class="app-header__title">Dashboard</div>
+        </div>
+      </header>
+      <main class="app-content">
+        <div class="app-content__inner">
+          <!-- Dashboard content loaded by app.js -->
+        </div>
+      </main>
+      <nav class="bottom-nav">
+        <div class="bottom-nav__item active" data-route="dashboard">
+          <div class="bottom-nav__icon">📊</div>
+          <div class="bottom-nav__label">Dashboard</div>
+        </div>
+        <div class="bottom-nav__item" data-route="timeline">
+          <div class="bottom-nav__icon">📈</div>
+          <div class="bottom-nav__label">Timeline</div>
+        </div>
+        <div class="bottom-nav__item" data-route="recovery">
+          <div class="bottom-nav__icon">💆</div>
+          <div class="bottom-nav__label">Recovery</div>
+        </div>
+        <div class="bottom-nav__item" data-route="regimen">
+          <div class="bottom-nav__icon">🏋️</div>
+          <div class="bottom-nav__label">Regimen</div>
+        </div>
+        <div class="bottom-nav__item" data-route="profile">
+          <div class="bottom-nav__icon">👤</div>
+          <div class="bottom-nav__label">Profile</div>
+        </div>
+      </nav>
+    </div>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

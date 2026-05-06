@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AthletiQ - Timeline</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <div class="app-header__content">
+          <div class="app-header__title">Timeline</div>
+        </div>
+      </header>
+      <main class="app-content">
+        <div class="app-content__inner">
+          <div class="empty-state" style="height: calc(100vh - 200px); display: flex; align-items: center;">
+            <div class="empty-state__icon">📅</div>
+            <div class="empty-state__title">Timeline</div>
+            <div class="empty-state__description">View detailed activity timeline</div>
+          </div>
+        </div>
+      </main>
+      <nav class="bottom-nav">
+        <div class="bottom-nav__item" data-route="dashboard">
+          <div class="bottom-nav__icon">📊</div>
+          <div class="bottom-nav__label">Dashboard</div>
+        </div>
+        <div class="bottom-nav__item active" data-route="timeline">
+          <div class="bottom-nav__icon">📈</div>
+          <div class="bottom-nav__label">Timeline</div>
+        </div>
+        <div class="bottom-nav__item" data-route="recovery">
+          <div class="bottom-nav__icon">💆</div>
+          <div class="bottom-nav__label">Recovery</div>
+        </div>
+        <div class="bottom-nav__item" data-route="regimen">
+          <div class="bottom-nav__icon">🏋️</div>
+          <div class="bottom-nav__label">Regimen</div>
+        </div>
+        <div class="bottom-nav__item" data-route="profile">
+          <div class="bottom-nav__icon">👤</div>
+          <div class="bottom-nav__label">Profile</div>
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>

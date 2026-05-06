@@ -1,0 +1,56 @@
+# Git Ignore for AthletiQ
+
+# Dependencies
+node_modules/
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+.env.local
+.env.*.local
+*.sublime-project
+*.sublime-workspace
+
+# Build & Dist
+build/
+dist/
+*.min.js
+*.min.css
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.production.local
+.env.development.local
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Local development
+local.json
+dev-notes.md

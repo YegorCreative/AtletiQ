@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B0F14" />
+    <meta name="description" content="AthletiQ - Performance Intelligence for Elite Runners" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="AthletiQ" />
+
+    <title>AthletiQ - Performance Intelligence</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
+
+    <!-- Apple Icon -->
+    <link rel="apple-touch-icon" href="assets/logos/athletiq-icon.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234ADE80' width='192' height='192'/><text x='50%' y='55%' font-size='120' fill='%230B0F14' text-anchor='middle' dy='.3em' font-family='system-ui' font-weight='bold'>A</text></svg>" />
+  </head>
+
+  <body>
+    <!-- App Container -->
+    <div class="app-container">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-header__content">
+          <div>
+            <div class="app-header__title">Dashboard</div>
+            <div class="app-header__date" id="current-date"></div>
+          </div>
+          <div class="app-header__actions">
+            <button class="app-header__icon" id="settings-btn" aria-label="Settings">
+              ⚙️
+            </button>
+            <button class="app-header__icon" id="notifications-btn" aria-label="Notifications">
+              🔔
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Area -->
+      <main class="app-content">
+        <div class="app-content__inner">
+          <!-- Dashboard content loaded here -->
+        </div>
+      </main>
+
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav" role="tablist">
+        <div class="bottom-nav__item active" data-route="dashboard" role="tab" aria-selected="true">
+          <div class="bottom-nav__icon">📊</div>
+          <div class="bottom-nav__label">Dashboard</div>
+        </div>
+        <div class="bottom-nav__item" data-route="timeline" role="tab" aria-selected="false">
+          <div class="bottom-nav__icon">📈</div>
+          <div class="bottom-nav__label">Timeline</div>
+        </div>
+        <div class="bottom-nav__item" data-route="recovery" role="tab" aria-selected="false">
+          <div class="bottom-nav__icon">💆</div>
+          <div class="bottom-nav__label">Recovery</div>
+        </div>
+        <div class="bottom-nav__item" data-route="regimen" role="tab" aria-selected="false">
+          <div class="bottom-nav__icon">🏋️</div>
+          <div class="bottom-nav__label">Regimen</div>
+        </div>
+        <div class="bottom-nav__item" data-route="profile" role="tab" aria-selected="false">
+          <div class="bottom-nav__icon">👤</div>
+          <div class="bottom-nav__label">Profile</div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/app.js"></script>
+    <script>
+      // Update current date in header
+      function updateDate() {
+        const dateEl = document.getElementById('current-date');
+        if (dateEl) {
+          const today = new Date();
+          const formatted = today.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+          });
+          dateEl.textContent = formatted;
+        }
+      }
+
+      // Update date on load and daily
+      updateDate();
+      setInterval(updateDate, 1000 * 60 * 60); // Update every hour
+
+      // Handle settings button
+      document.getElementById('settings-btn')?.addEventListener('click', () => {
+        console.log('Settings clicked');
+      });
+
+      // Handle notifications button
+      document.getElementById('notifications-btn')?.addEventListener('click', () => {
+        console.log('Notifications clicked');
+      });
+    </script>
+  </body>
+</html>
