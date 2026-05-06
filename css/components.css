@@ -364,6 +364,53 @@
   white-space: nowrap;
 }
 
+/* Timeline Modifiers (Athlete Memory) */
+.timeline-entry--milestone {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.02));
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin: var(--space-2) 0;
+}
+.timeline-entry--milestone .timeline-entry__icon {
+  background: var(--color-primary);
+  color: var(--color-bg-primary);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+.timeline-entry--milestone .timeline-entry__title {
+  color: var(--color-primary-light);
+}
+
+.timeline-entry--reflection {
+  background: var(--color-bg-tertiary);
+  border-left: 2px solid var(--color-border);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3);
+  margin: var(--space-2) 0;
+}
+.timeline-entry__quote {
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--color-border);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.timeline-entry__highlight {
+  display: inline-block;
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-1);
+  font-weight: var(--weight-bold);
+}
+
 /* ---- FAB (Floating Action Button) ---- */
 .fab {
   position: fixed;
