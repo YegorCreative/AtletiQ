@@ -7,6 +7,7 @@ import { dashboard } from './dashboard.js';
 import { timeline } from './timeline.js';
 import { fuel } from './fuel.js';
 import { profile } from './profile.js';
+import { stats } from './stats.js';
 import { storage } from './storage.js';
 
 export class App {
@@ -53,6 +54,11 @@ export class App {
     router.register('profile', () => {
       this.updateHeader('profile');
       profile.init();
+    });
+
+    router.register('stats', () => {
+      this.updateHeader('stats');
+      stats.init();
     });
   }
 
@@ -112,6 +118,7 @@ export class App {
       timeline: 'Timeline',
       prepare: 'Fuel Lens',
       fuel: 'Fuel Lens',
+      stats: 'Statistics',
       profile: 'Profile',
     };
 

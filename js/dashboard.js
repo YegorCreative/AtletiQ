@@ -4,13 +4,12 @@
 
 import {
   mockAthlete,
-  mockPillarInputs,
-  mockReadiness,
   mockDailyCheckin,
-  mockTodayActions,
+  mockDailyDirective,
+  mockRequiredPlan,
+  mockImprovementActions,
   mockTimelineEvents,
 } from './data/mockData.js';
-import { IntelligenceEngine } from './intelligence.js';
 
 export const dashboard = {
   /**
@@ -57,68 +56,40 @@ export const dashboard = {
 
     el.innerHTML = `
       <div class="dashboard">
-        ${this.renderHero()}
+        ${this.renderDailyDirective()}
         ${this.renderCheckinBanner()}
-        ${this.renderInsight()}
-        ${this.renderPreparation()}
-        ${this.renderActions()}
+        ${this.renderRequiredPlan()}
+        ${this.renderImprovementActions()}
         ${this.renderTimeline()}
       </div>
     `;
   },
 
   /**
-   * Hero — Readiness Ring + Status
+   * Daily Directive Hero (Replacing Readiness Ring)
    */
-  renderHero() {
-    const { score, label } = mockReadiness;
-    const radius = 54;
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (score / 100) * circumference;
-
+  renderDailyDirective() {
     return `
-      <div class="dash-hero animate-in">
-        <div class="dash-hero__header">
-          <div class="dash-hero__ring">
-            <div class="readiness-ring">
-              <svg class="readiness-ring__svg" viewBox="0 0 120 120">
-                <circle class="readiness-ring__bg" cx="60" cy="60" r="${radius}" />
-                <circle
-                  class="readiness-ring__progress"
-                  cx="60" cy="60" r="${radius}"
-                  stroke-dasharray="${circumference}"
-                  stroke-dashoffset="${offset}"
-                  style="--ring-circumference: ${circumference}; --ring-offset: ${offset};"
-                />
-              </svg>
-              <div class="readiness-ring__center">
-                <span class="readiness-ring__score">${score}</span>
-                <span class="readiness-ring__label">READY</span>
-              </div>
-            </div>
-          </div>
-          <div class="dash-hero__info">
-            <div class="dash-hero__status">
-              <div class="status-dot green"></div>
-              <span class="dash-hero__status-text">RECOVERY: ${label}</span>
-            </div>
-            <div class="dash-hero__subtitle">
-              Based on sleep, load, and nervous system state.
-            </div>
-          </div>
+      <div class="daily-directive animate-in">
+        <div class="daily-directive__header" style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-3);">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); box-shadow: 0 0 8px var(--color-primary);"></div>
+          <span style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--color-text-secondary);">Today's Focus</span>
+        </div>
+        <div class="daily-directive__text" style="font-size: var(--text-lg); font-weight: var(--weight-medium); line-height: 1.4; color: var(--color-text-primary);">
+          ${mockDailyDirective}
         </div>
       </div>
     `;
   },
 
   /**
-   * Check-in Banner (if not completed)
+   * Check-in Banner
    */
   renderCheckinBanner() {
     if (mockDailyCheckin.completed) return '';
 
     return `
-      <div class="checkin-banner animate-in" id="checkin-trigger" style="animation-delay: 0.1s;">
+      <div class="checkin-banner animate-in" id="checkin-trigger" style="animation-delay: 0.1s; margin-top: var(--space-4);">
         <div class="checkin-banner__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
@@ -135,115 +106,16 @@ export const dashboard = {
   },
 
   /**
-   * Insight — Causal explanation
+   * Required Plan (Non-negotiable workouts)
    */
-  renderInsight() {
-    const { insight } = mockReadiness;
-    if (!insight) return '';
+  renderRequiredPlan() {
+    const completed = mockRequiredPlan.filter((a) => a.completed).length;
+    const total = mockRequiredPlan.length;
 
-    const reasons = insight.reasons
-      .map(
-        (r) => `
-        <div class="insight-reason">
-          <div class="insight-reason__dot negative"></div>
-          <span class="insight-reason__text">${r.signal}</span>
-          <span class="insight-reason__detail">${r.detail}</span>
-        </div>
-      `,
-      )
-      .join('');
-
-    const positives = insight.positive
-      .map(
-        (r) => `
-        <div class="insight-reason">
-          <div class="insight-reason__dot positive"></div>
-          <span class="insight-reason__text">${r.signal}</span>
-          <span class="insight-reason__detail">${r.detail}</span>
-        </div>
-      `,
-      )
-      .join('');
-
-    return `
-      <div class="dash-insight">
-        <div class="insight-card">
-          <div class="insight-card__headline" style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: var(--tracking-wide);">Intelligence</div>
-          <div class="insight-card__headline" style="margin-bottom: var(--space-4);">${insight.headline}</div>
-          <div class="insight-card__reasons">
-            ${reasons}
-            ${positives}
-          </div>
-        </div>
-      </div>
-    `;
-  },
-
-  /**
-   * Preparation — 6 Pillars
-   */
-  renderPreparation() {
-    const statusMap = {
-      strong: 'Strong',
-      good: 'Good',
-      moderate: 'Moderate',
-      low: 'Low',
-    };
-
-    const evaluatedPillars = IntelligenceEngine.evaluatePreparation(mockPillarInputs);
-
-    const bars = evaluatedPillars
-      .map((p) => {
-        // Visual Rule: Good/Strong fade out (opacity), Low commands attention (full opacity, maybe a slight pulse)
-        const opacityClass = (p.status === 'strong' || p.status === 'good') ? 'prep-bar--fade' : 'prep-bar--attention';
-        
-        return `
-        <div class="prep-bar ${opacityClass} interactive" data-pillar="${p.id}">
-          <div class="prep-bar__icon ${p.color}">${p.icon}</div>
-          <div class="prep-bar__content">
-            <div class="prep-bar__header">
-              <span class="prep-bar__label">${p.label}</span>
-              <span class="prep-bar__status ${p.color}">${statusMap[p.status] || p.status}</span>
-            </div>
-            <div class="prep-bar__track">
-              <div class="prep-bar__fill ${p.color}" style="--bar-width: ${p.score}%; width: ${p.score}%;"></div>
-            </div>
-            <div class="prep-bar__reasoning" style="display: none; margin-top: 8px; font-size: var(--text-xs); color: var(--color-text-tertiary);">
-              ${p.reasoning}
-            </div>
-          </div>
-        </div>
-      `;
-      })
-      .join('');
-
-    return `
-      <div class="dash-preparation">
-        <div class="section-header">
-          <h2 class="section-title">Preparation</h2>
-          <span class="section-action">Details →</span>
-        </div>
-        <div class="glass-card">
-          <div class="prep-list stagger">
-            ${bars}
-          </div>
-        </div>
-      </div>
-    `;
-  },
-
-  /**
-   * Today's Actions
-   */
-  renderActions() {
-    const completed = mockTodayActions.filter((a) => a.completed).length;
-    const total = mockTodayActions.length;
-    const pct = Math.round((completed / total) * 100);
-
-    const cards = mockTodayActions
+    const cards = mockRequiredPlan
       .map(
         (a) => `
-        <div class="action-card ${a.completed ? 'completed' : ''}" data-action-id="${a.id}">
+        <div class="action-card ${a.completed ? 'completed' : ''} action-required" data-action-id="${a.id}">
           <div class="action-card__check">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="20 6 9 17 4 12"/>
@@ -255,24 +127,57 @@ export const dashboard = {
           </div>
           <div class="action-card__icon">${a.icon}</div>
         </div>
-      `,
+      `
       )
       .join('');
 
     return `
-      <div class="dash-actions">
+      <div class="dash-actions" style="margin-top: var(--space-8);">
         <div class="section-header">
-          <h2 class="section-title">Today's Actions</h2>
+          <h2 class="section-title">The Required Plan</h2>
           <span class="section-action">${completed}/${total}</span>
         </div>
         <div class="actions-list stagger">
           ${cards}
         </div>
-        <div class="actions-progress">
-          <div class="progress actions-progress__bar">
-            <div class="progress__bar" style="width: ${pct}%;"></div>
+      </div>
+    `;
+  },
+
+  /**
+   * Improvement Actions (Prescriptive Recovery/Nutrition/Mental)
+   */
+  renderImprovementActions() {
+    const completed = mockImprovementActions.filter((a) => a.completed).length;
+    const total = mockImprovementActions.length;
+
+    const cards = mockImprovementActions
+      .map(
+        (a) => `
+        <div class="action-card ${a.completed ? 'completed' : ''} action-improvement" data-action-id="${a.id}">
+          <div class="action-card__check">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
           </div>
-          <span class="actions-progress__text">${pct}%</span>
+          <div class="action-card__body">
+            <div class="action-card__title">${a.title}</div>
+            <div class="action-card__subtitle">${a.subtitle}</div>
+          </div>
+          <div class="action-card__icon">${a.icon}</div>
+        </div>
+      `
+      )
+      .join('');
+
+    return `
+      <div class="dash-actions" style="margin-top: var(--space-6);">
+        <div class="section-header">
+          <h2 class="section-title">Actions for Improvement</h2>
+          <span class="section-action">${completed}/${total}</span>
+        </div>
+        <div class="actions-list stagger">
+          ${cards}
         </div>
       </div>
     `;
@@ -334,14 +239,16 @@ export const dashboard = {
           this.openReview();
         } else {
           card.classList.toggle('completed');
-          this.updateActionProgress();
+          // In a real app, update the mock data state here
+          this.updateActionProgress(card);
         }
       });
     });
 
     // Listen for external completions
     document.addEventListener('athletiq:actionCompleted', () => {
-      this.updateActionProgress();
+      const card = document.querySelector('[data-action-id="action_3"]');
+      if (card) this.updateActionProgress(card);
     });
 
     // Check-in banner
@@ -373,39 +280,20 @@ export const dashboard = {
         }
       });
     }
-
-    // Pillar Drill-down
-    document.querySelectorAll('.prep-bar.interactive').forEach((bar) => {
-      bar.addEventListener('click', () => {
-        const reasoningEl = bar.querySelector('.prep-bar__reasoning');
-        if (reasoningEl) {
-          if (reasoningEl.style.display === 'none') {
-            reasoningEl.style.display = 'block';
-            reasoningEl.style.animation = 'fadeInDown 0.2s ease forwards';
-          } else {
-            reasoningEl.style.display = 'none';
-          }
-        }
-      });
-    });
   },
 
   /**
-   * Update action progress bar
+   * Update action progress count for the specific section
    */
-  updateActionProgress() {
-    const cards = document.querySelectorAll('.action-card');
-    const completed = document.querySelectorAll('.action-card.completed').length;
-    const total = cards.length;
-    const pct = Math.round((completed / total) * 100);
-
-    const bar = document.querySelector('.actions-progress__bar .progress__bar');
-    const text = document.querySelector('.actions-progress__text');
-    const count = document.querySelector('.dash-actions .section-action');
-
-    if (bar) bar.style.width = `${pct}%`;
-    if (text) text.textContent = `${pct}%`;
-    if (count) count.textContent = `${completed}/${total}`;
+  updateActionProgress(card) {
+    const section = card.closest('.dash-actions');
+    if (section) {
+      const cards = section.querySelectorAll('.action-card');
+      const completed = section.querySelectorAll('.action-card.completed').length;
+      const total = cards.length;
+      const countLabel = section.querySelector('.section-action');
+      if (countLabel) countLabel.textContent = `${completed}/${total}`;
+    }
   },
 
   /**
