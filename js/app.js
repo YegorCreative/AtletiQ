@@ -5,6 +5,7 @@
 import { router } from './router.js';
 import { dashboard } from './dashboard.js';
 import { timeline } from './timeline.js';
+import { fuel } from './fuel.js';
 import { storage } from './storage.js';
 
 export class App {
@@ -44,14 +45,8 @@ export class App {
     });
 
     router.register('prepare', () => {
-      this.updateHeader('prepare');
-      this.showPlaceholder(
-        'Prepare',
-        'Build your regimen. Track your habits. See your consistency.',
-        `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>`,
-      );
+      this.updateHeader('fuel'); // Use a custom header title logic or update `titles` mapping
+      fuel.init();
     });
 
     router.register('profile', () => {
@@ -121,7 +116,8 @@ export class App {
     // For other routes, show route name
     const titles = {
       timeline: 'Timeline',
-      prepare: 'Prepare',
+      prepare: 'Fuel Lens',
+      fuel: 'Fuel Lens',
       profile: 'Profile',
     };
 
