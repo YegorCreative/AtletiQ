@@ -330,9 +330,18 @@ export const dashboard = {
     // Action card toggle
     document.querySelectorAll('.action-card').forEach((card) => {
       card.addEventListener('click', () => {
-        card.classList.toggle('completed');
-        this.updateActionProgress();
+        if (card.dataset.actionId === 'action_3') {
+          this.openReview();
+        } else {
+          card.classList.toggle('completed');
+          this.updateActionProgress();
+        }
       });
+    });
+
+    // Listen for external completions
+    document.addEventListener('athletiq:actionCompleted', () => {
+      this.updateActionProgress();
     });
 
     // Check-in banner
@@ -356,7 +365,12 @@ export const dashboard = {
     const fab = document.getElementById('fab-btn');
     if (fab) {
       fab.addEventListener('click', () => {
-        this.openCheckin();
+        const h = new Date().getHours();
+        if (h >= 17) {
+          this.openReview();
+        } else {
+          this.openCheckin();
+        }
       });
     }
 
@@ -405,6 +419,19 @@ export const dashboard = {
       })
       .catch(() => {
         console.log('Check-in module loading...');
+      });
+  },
+
+  /**
+   * Open review modal
+   */
+  openReview() {
+    import('./review.js')
+      .then((module) => {
+        module.review.open();
+      })
+      .catch(() => {
+        console.log('Review module loading...');
       });
   },
 };
