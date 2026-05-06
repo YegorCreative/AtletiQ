@@ -1,144 +1,119 @@
 /* ============================================
-   AthletiQ Responsive Design
-   Mobile-First Approach
+   AtletiQ Responsive Design
    ============================================ */
 
-/* Base mobile layout (375px - 480px) */
-body {
-  font-size: 16px;
-}
-
-.container {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-.container-padded {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-lg);
-}
-
-/* Safe area handling */
-.safe-area-top {
-  padding-top: var(--safe-area-inset-top);
-}
-
-.safe-area-bottom {
-  padding-bottom: var(--safe-area-inset-bottom);
-}
-
-/* Mobile Grid adjustments */
-@media (max-width: 640px) {
-  .grid-2 {
-    grid-template-columns: 1fr;
+/* ---- Small devices (iPhone SE — 320px) ---- */
+@media (max-width: 374px) {
+  .dash-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-3);
   }
 
-  .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
+  .readiness-ring {
+    width: 110px;
+    height: 110px;
   }
 
-  .hide-mobile {
-    display: none !important;
+  .readiness-ring__score {
+    font-size: var(--text-3xl);
   }
 
-  .btn-block {
-    width: 100%;
+  .app-content__inner {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
   }
 }
 
-/* Tablet adjustments (641px - 1024px) */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .container {
-    max-width: 600px;
-  }
-
-  .container-padded {
-    max-width: 600px;
-    padding: 0 var(--spacing-2xl);
-  }
-
-  .hide-tablet {
-    display: none !important;
+/* ---- Standard mobile (375px–430px) ---- */
+@media (min-width: 375px) and (max-width: 430px) {
+  .app-container {
+    max-width: 100%;
   }
 }
 
-/* Desktop adjustments (1025px+) */
-@media (min-width: 1025px) {
-  .container {
-    max-width: 1200px;
+/* ---- Tablets and wider (431px+) ---- */
+@media (min-width: 431px) {
+  .app-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
   }
 
-  .container-padded {
-    max-width: 1200px;
-    padding: 0 var(--spacing-3xl);
+  .bottom-nav {
+    max-width: var(--max-width);
   }
 
-  .hide-desktop {
-    display: none !important;
-  }
-
-  .show-desktop {
-    display: block !important;
-  }
-
-  .grid-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
+  .fab {
+    right: calc(50% - var(--max-width) / 2 + 20px);
   }
 }
 
-/* Landscape mode adjustments */
-@media (max-height: 600px) {
-  .hide-landscape {
-    display: none !important;
+/* ---- Desktop centering (768px+) ---- */
+@media (min-width: 768px) {
+  body {
+    display: flex;
+    justify-content: center;
+    background: var(--color-bg-sunken);
+  }
+
+  .app-container {
+    box-shadow: var(--shadow-xl);
   }
 }
 
-/* Portrait mode adjustments */
-@media (min-height: 600px) {
-  .hide-portrait {
-    display: none !important;
+/* ---- Landscape ---- */
+@media (orientation: landscape) and (max-height: 500px) {
+  .app-header {
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+
+  .bottom-nav__label { display: none; }
+  .bottom-nav { padding: var(--space-1) 0; }
+
+  .dash-hero {
+    flex-direction: row;
+    padding: var(--space-3);
+  }
+
+  .readiness-ring {
+    width: 90px;
+    height: 90px;
+  }
+
+  .readiness-ring__score {
+    font-size: var(--text-2xl);
   }
 }
 
-/* Touch device optimizations */
+/* ---- Touch device optimizations ---- */
 @media (hover: none) and (pointer: coarse) {
   .btn,
-  a,
-  [role="button"] {
+  [role="button"],
+  .bottom-nav__item {
     min-height: 44px;
-    min-width: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  .card {
-    padding: var(--spacing-lg);
-  }
+  .action-card { min-height: 52px; }
 
-  /* Larger touch targets for forms */
-  .input-field {
-    min-height: 44px;
-    font-size: 16px; /* Prevents zoom on iOS */
+  /* Remove hover effects on touch */
+  .hover-lift:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
 
-/* High DPI / Retina displays */
+/* ---- High DPI ---- */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .border {
+  .divider,
+  .prep-list .prep-bar {
     border-width: 0.5px;
   }
 }
 
-/* Reduced motion */
+/* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -147,99 +122,11 @@ body {
   }
 }
 
-/* Large text zoom support */
-@media (max-width: 500px) and (-webkit-min-device-pixel-ratio: 2) {
-  html {
-    font-size: 14px;
-  }
-}
-
-/* Notch support */
-@media (prefers-color-scheme: dark) and (device-width: 375px) and (device-height: 812px) {
-  /* iPhone X, 11 Pro, etc. */
-  body {
-    padding-top: 44px;
-  }
-}
-
-/* Accessibility: Large text mode */
-@media (prefers-color-scheme: dark) and (screen-size: 375px) {
-  .font-lg { font-size: var(--font-size-xl); }
-  .font-xl { font-size: var(--font-size-2xl); }
-}
-
-/* Print styles */
+/* ---- Print ---- */
 @media print {
-  body {
-    background-color: white;
-    color: black;
-  }
+  .bottom-nav,
+  .fab,
+  .app-header { display: none !important; }
 
-  .no-print {
-    display: none !important;
-  }
-}
-
-/* Dark mode - more aggressive shadows for depth */
-@media (prefers-color-scheme: dark) {
-  .card {
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-  }
-
-  .card:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  }
-}
-
-/* Landscape-specific layouts */
-@media (orientation: landscape) and (max-height: 600px) {
-  .full-height {
-    min-height: 100vh;
-  }
-
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: auto;
-  }
-}
-
-/* iPad Pro and larger tablets */
-@media (min-width: 1024px) and (hover: hover) {
-  .card:hover {
-    transform: translateY(-2px);
-  }
-
-  .btn:hover {
-    transform: translateY(-1px);
-  }
-}
-
-/* Very small devices (iPhone SE) */
-@media (max-width: 375px) {
-  .card {
-    padding: var(--spacing-md);
-  }
-
-  .btn {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
-  }
-
-  .text-2xl {
-    font-size: 20px;
-  }
-}
-
-/* Extra large devices */
-@media (min-width: 1920px) {
-  .container {
-    max-width: 1400px;
-  }
-
-  body {
-    font-size: 18px;
-  }
+  body { background: white; color: black; }
 }

@@ -1,6 +1,5 @@
 /* ============================================
-   AthletiQ Router
-   Client-side navigation
+   AtletiQ Router — Client-side Navigation
    ============================================ */
 
 export class Router {
@@ -27,8 +26,15 @@ export class Router {
       return;
     }
 
+    const prev = this.currentRoute;
     this.currentRoute = route;
-    this.notifyListeners();
+
+    // Execute route handler
+    const handler = this.routes.get(route);
+    if (handler) handler();
+
+    // Notify listeners
+    this.notifyListeners(route, prev);
   }
 
   /**
@@ -49,14 +55,11 @@ export class Router {
   }
 
   /**
-   * Notify all listeners of route change
+   * Notify all listeners
    */
-  notifyListeners() {
-    this.listeners.forEach((listener) => listener(this.currentRoute));
+  notifyListeners(route, prev) {
+    this.listeners.forEach((listener) => listener(route, prev));
   }
 }
 
-/**
- * Create and export router instance
- */
 export const router = new Router();
