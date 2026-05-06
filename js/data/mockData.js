@@ -14,63 +14,15 @@ export const mockAthlete = {
   avatar: null,
 };
 
-/* The 6 Preparation Pillars */
-export const mockPreparation = [
-  {
-    id: 'training',
-    label: 'Training',
-    question: 'Did you complete your planned work?',
-    score: 85,
-    status: 'strong',
-    color: 'green',
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-  },
-  {
-    id: 'recovery',
-    label: 'Recovery',
-    question: 'Are you sleeping and recovering enough?',
-    score: 78,
-    status: 'good',
-    color: 'green',
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>`,
-  },
-  {
-    id: 'nutrition',
-    label: 'Nutrition',
-    question: 'Are you fueling your body properly?',
-    score: 52,
-    status: 'moderate',
-    color: 'yellow',
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>`,
-  },
-  {
-    id: 'mobility',
-    label: 'Mobility',
-    question: 'Are you maintaining movement quality?',
-    score: 28,
-    status: 'low',
-    color: 'red',
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
-  },
-  {
-    id: 'strength',
-    label: 'Strength',
-    question: 'Are you building stability and durability?',
-    score: 72,
-    status: 'good',
-    color: 'green',
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" y1="21" x2="20" y2="21"/><line x1="12" y1="16" x2="12" y2="21"/></svg>`,
-  },
-  {
-    id: 'mental',
-    label: 'Mental Readiness',
-    question: 'Are you focused and emotionally ready?',
-    score: 80,
-    status: 'good',
-    color: 'green',
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/><path d="M12 8v4l3 3"/></svg>`,
-  },
-];
+/* The 6 Preparation Pillars (Raw Inputs) */
+export const mockPillarInputs = {
+  training: { plannedLoad: 800, actualLoad: 780, consistency: 0.95 },
+  recovery: { sleepAvg: 7.2, sleepTarget: 8, rhrTrend: 'stable' },
+  nutrition: { qualityMeals: 15, totalMeals: 21, hydration: 6, hydrationTarget: 8, postWorkoutFueling: true },
+  mobility: { sessionsPerWeek: 1, targetSessions: 4, soreness: 4, skippedCooldowns: 3 },
+  strength: { sessions: 2, targetSessions: 2, progression: 'maintaining' },
+  mental: { stressLevel: 2, motivationLevel: 4, reflectionsLogged: true },
+};
 
 /* Daily readiness + causal insight */
 export const mockReadiness = {
