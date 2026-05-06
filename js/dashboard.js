@@ -8,6 +8,7 @@ import {
   mockDailyDirective,
   mockRequiredPlan,
   mockImprovementActions,
+  mockWorkoutIdeas,
   mockTimelineEvents,
 } from './data/mockData.js';
 
@@ -59,6 +60,7 @@ export const dashboard = {
         ${this.renderDailyDirective()}
         ${this.renderCheckinBanner()}
         ${this.renderRequiredPlan()}
+        ${this.renderWorkoutIdeas()}
         ${this.renderImprovementActions()}
         ${this.renderTimeline()}
       </div>
@@ -138,6 +140,44 @@ export const dashboard = {
           <span class="section-action">${completed}/${total}</span>
         </div>
         <div class="actions-list stagger">
+          ${cards}
+        </div>
+      </div>
+    `;
+  },
+
+  /**
+   * Workout Ideas / Alternatives (Carousel)
+   */
+  renderWorkoutIdeas() {
+    const cards = mockWorkoutIdeas
+      .map(
+        (idea) => `
+        <div class="glass-card idea-card" style="min-width: 240px; padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); flex-shrink: 0;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--color-primary-light);">${idea.type}</span>
+            <span style="font-size: var(--text-xs); color: var(--color-text-tertiary);">${idea.duration}</span>
+          </div>
+          <div style="font-size: var(--text-base); font-weight: var(--weight-bold); color: var(--color-text-primary); margin-top: var(--space-1);">
+            ${idea.title}
+          </div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-secondary); line-height: 1.4;">
+            ${idea.description}
+          </div>
+          <div style="display: flex; gap: var(--space-2); margin-top: auto; padding-top: var(--space-3);">
+            ${idea.tags.map(t => `<span style="font-size: 10px; padding: 2px 6px; background: var(--color-bg-tertiary); border-radius: var(--radius-sm); color: var(--color-text-secondary);">${t}</span>`).join('')}
+          </div>
+        </div>
+      `
+      )
+      .join('');
+
+    return `
+      <div class="dash-ideas" style="margin-top: var(--space-6);">
+        <div class="section-header">
+          <h2 class="section-title">Workout Ideas</h2>
+        </div>
+        <div class="ideas-carousel stagger" style="display: flex; gap: var(--space-4); overflow-x: auto; padding-bottom: var(--space-4); margin-right: calc(var(--space-4) * -1); padding-right: var(--space-4);">
           ${cards}
         </div>
       </div>

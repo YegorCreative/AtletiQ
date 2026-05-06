@@ -108,6 +108,34 @@ export const mockImprovementActions = [
   }
 ];
 
+/* Workout Ideas / Alternatives */
+export const mockWorkoutIdeas = [
+  {
+    id: 'idea_1',
+    title: 'Active Recovery Spin',
+    duration: '30 Min',
+    type: 'Low Impact',
+    description: 'Flush the legs on the stationary bike if running feels too heavy today.',
+    tags: ['Recovery', 'Zone 1']
+  },
+  {
+    id: 'idea_2',
+    title: 'Core & Stability Routine',
+    duration: '15 Min',
+    type: 'Strength',
+    description: 'Quick circuit to build resilience without taxing the aerobic system.',
+    tags: ['Core', 'Resilience']
+  },
+  {
+    id: 'idea_3',
+    title: 'Yoga for Runners',
+    duration: '20 Min',
+    type: 'Mobility',
+    description: 'Focus on hamstrings, hips, and lower back tension release.',
+    tags: ['Mobility', 'Flow']
+  }
+];
+
 /* Timeline events (Athlete Memory) */
 export const mockTimelineEvents = [
   {
