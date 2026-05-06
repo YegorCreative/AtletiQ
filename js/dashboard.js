@@ -4,12 +4,13 @@
 
 import {
   mockAthlete,
-  mockPreparation,
+  mockPillarInputs,
   mockReadiness,
   mockDailyCheckin,
   mockTodayActions,
   mockTimelineEvents,
 } from './data/mockData.js';
+import { IntelligenceEngine } from './intelligence.js';
 
 export const dashboard = {
   /**
@@ -189,10 +190,15 @@ export const dashboard = {
       low: 'Low',
     };
 
-    const bars = mockPreparation
-      .map(
-        (p) => `
-        <div class="prep-bar">
+    const evaluatedPillars = IntelligenceEngine.evaluatePreparation(mockPillarInputs);
+
+    const bars = evaluatedPillars
+      .map((p) => {
+        // Visual Rule: Good/Strong fade out (opacity), Low commands attention (full opacity, maybe a slight pulse)
+        const opacityClass = (p.status === 'strong' || p.status === 'good') ? 'prep-bar--fade' : 'prep-bar--attention';
+        
+        return `
+        <div class="prep-bar ${opacityClass} interactive" data-pillar="${p.id}">
           <div class="prep-bar__icon ${p.color}">${p.icon}</div>
           <div class="prep-bar__content">
             <div class="prep-bar__header">
@@ -202,10 +208,13 @@ export const dashboard = {
             <div class="prep-bar__track">
               <div class="prep-bar__fill ${p.color}" style="--bar-width: ${p.score}%; width: ${p.score}%;"></div>
             </div>
+            <div class="prep-bar__reasoning" style="display: none; margin-top: 8px; font-size: var(--text-xs); color: var(--color-text-tertiary);">
+              ${p.reasoning}
+            </div>
           </div>
         </div>
-      `,
-      )
+      `;
+      })
       .join('');
 
     return `
@@ -350,6 +359,21 @@ export const dashboard = {
         this.openCheckin();
       });
     }
+
+    // Pillar Drill-down
+    document.querySelectorAll('.prep-bar.interactive').forEach((bar) => {
+      bar.addEventListener('click', () => {
+        const reasoningEl = bar.querySelector('.prep-bar__reasoning');
+        if (reasoningEl) {
+          if (reasoningEl.style.display === 'none') {
+            reasoningEl.style.display = 'block';
+            reasoningEl.style.animation = 'fadeInDown 0.2s ease forwards';
+          } else {
+            reasoningEl.style.display = 'none';
+          }
+        }
+      });
+    });
   },
 
   /**

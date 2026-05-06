@@ -56,9 +56,34 @@
 /* ---- PREPARATION BAR ---- */
 .prep-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-3);
-  padding: var(--space-3) 0;
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.prep-bar.interactive {
+  cursor: pointer;
+}
+
+.prep-bar.interactive:hover {
+  background: var(--color-bg-tertiary);
+}
+
+.prep-bar--fade {
+  opacity: 0.6;
+}
+
+.prep-bar--fade:hover {
+  opacity: 0.8;
+}
+
+.prep-bar--attention {
+  opacity: 1;
+  border-left: 2px solid var(--color-danger);
+  padding-left: var(--space-3);
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.05), transparent);
 }
 
 .prep-bar__icon {
@@ -107,10 +132,11 @@
 
 .prep-bar__track {
   width: 100%;
-  height: 4px;
-  background: var(--color-bg-tertiary);
+  height: 2px;
+  background: var(--color-border);
   border-radius: var(--radius-full);
   overflow: hidden;
+  margin-top: var(--space-1);
 }
 
 .prep-bar__fill {
