@@ -843,3 +843,92 @@
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* ============================================
+   FUEL LENS
+   ============================================ */
+
+.fuel-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  border-radius: var(--radius-2xl);
+  margin-top: var(--space-4);
+  position: relative;
+}
+
+.fuel-hero__gauge {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fuel-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.fuel-ring__bg {
+  fill: none;
+  stroke: var(--color-bg-tertiary);
+  stroke-width: 12;
+}
+
+.fuel-ring__progress {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s var(--ease-spring);
+}
+
+.fuel-ring__progress.glow {
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));
+}
+
+.fuel-hero__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.fuel-hero__value {
+  font-size: 42px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+
+.fuel-hero__label {
+  font-size: var(--text-sm);
+  color: var(--color-primary-light);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  margin-top: var(--space-1);
+}
+
+.fuel-hero__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  background: var(--glass-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
