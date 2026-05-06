@@ -932,3 +932,226 @@
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
 }
+
+/* ============================================
+   ATHLETE EVOLUTION (PROFILE)
+   ============================================ */
+
+.evolution-hero {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  margin-top: var(--space-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.evolution-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), transparent 60%);
+  z-index: 0;
+}
+
+.evolution-hero > * {
+  z-index: 1;
+  position: relative;
+}
+
+.evolution-hero__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-green-700));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-bg-primary);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-glow);
+}
+
+.evolution-hero__info {
+  flex: 1;
+}
+
+.evolution-hero__name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-tight);
+}
+
+.evolution-hero__role {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
+
+.evolution-hero__phase {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.evolution-hero__phase-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wider);
+}
+
+.evolution-hero__phase-value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary-light);
+}
+
+/* ---- CAPABILITY MATRIX ---- */
+.capability-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.capability-row__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.capability-row__label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+}
+
+.capability-row__trend {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.capability-row__track {
+  width: 100%;
+  height: 6px;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.capability-row__fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 1s var(--ease-spring);
+}
+
+/* ---- THE VAULT (PRs) ---- */
+.vault-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.vault-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.vault-entry:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-border-light);
+}
+
+.vault-entry__event {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-secondary);
+  width: 80px;
+}
+
+.vault-entry__time {
+  flex: 1;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary-light);
+  letter-spacing: var(--tracking-tight);
+}
+
+.vault-entry__date {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* ---- CONSISTENCY MAP ---- */
+.consistency-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.consistency-grid {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+.consistency-grid::-webkit-scrollbar { display: none; }
+
+.consistency-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consistency-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.consistency-cell.tier-0 { background: var(--color-bg-tertiary); }
+.consistency-cell.tier-1 { background: rgba(16, 185, 129, 0.3); }
+.consistency-cell.tier-2 { background: rgba(16, 185, 129, 0.6); }
+.consistency-cell.tier-3 { background: rgba(16, 185, 129, 1); box-shadow: 0 0 4px rgba(16, 185, 129, 0.4); }
+
+.consistency-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+}
+
+.consistency-legend__scale {
+  display: flex;
+  gap: 3px;
+}
+
+.consistency-legend__scale span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}

@@ -45,8 +45,16 @@ export const timeline = {
     el.innerHTML = `
       <div class="timeline-view page-enter">
         <div class="timeline-view__header">
-          <h1 class="timeline-view__title">Athlete Memory</h1>
-          <p class="timeline-view__subtitle">The story of becoming great.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h1 class="timeline-view__title">Athlete Memory</h1>
+              <p class="timeline-view__subtitle">The story of becoming great.</p>
+            </div>
+            <button id="add-memory-btn" class="btn btn-primary" style="padding: var(--space-2) var(--space-3); font-size: var(--text-xs); display: flex; gap: var(--space-1); align-items: center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Log
+            </button>
+          </div>
           
           <div class="timeline-filter">
             <button class="timeline-filter__btn ${this.currentFilter === 'all' ? 'active' : ''}" data-filter="all">All Activity</button>
@@ -131,5 +139,17 @@ export const timeline = {
         }
       });
     });
+
+    // Add Memory Button
+    const addBtn = document.getElementById('add-memory-btn');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => {
+        import('./review.js')
+          .then((module) => {
+            module.review.open();
+          })
+          .catch(e => console.error('Failed to load review module', e));
+      });
+    }
   }
 };

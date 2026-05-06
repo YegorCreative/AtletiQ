@@ -6,6 +6,7 @@ import { router } from './router.js';
 import { dashboard } from './dashboard.js';
 import { timeline } from './timeline.js';
 import { fuel } from './fuel.js';
+import { profile } from './profile.js';
 import { storage } from './storage.js';
 
 export class App {
@@ -51,14 +52,7 @@ export class App {
 
     router.register('profile', () => {
       this.updateHeader('profile');
-      this.showPlaceholder(
-        'Profile',
-        'Your performance record. Preparation, capability, and growth — all in one place.',
-        `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>`,
-      );
+      profile.init();
     });
   }
 

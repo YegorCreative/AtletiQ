@@ -63,27 +63,15 @@ export const review = {
             </div>
           </div>
 
-          <!-- Stress -->
-          <div class="slider-group">
-            <div class="slider-group__label">
-              <span>Current Stress</span>
-              <span class="slider-group__value" id="stress-val">2</span>
-            </div>
-            <input type="range" id="review-stress" min="1" max="5" value="2" step="1" />
-            <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--color-text-tertiary);">
-              <span>Low</span><span>High</span>
-            </div>
-          </div>
-
-          <!-- Momentum / Motivation -->
-          <div class="slider-group">
-            <div class="slider-group__label">
-              <span>Motivation for Tomorrow</span>
-              <span class="slider-group__value" id="momentum-val">4</span>
-            </div>
-            <input type="range" id="review-momentum" min="1" max="5" value="4" step="1" />
-            <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--color-text-tertiary);">
-              <span>Low</span><span>Fired up</span>
+          <!-- Emotion -->
+          <div class="input-group">
+            <label>How are you feeling?</label>
+            <div class="chip-group" id="review-emotion" style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+              <div class="chip" data-value="fired-up">Fired Up</div>
+              <div class="chip" data-value="motivated">Motivated</div>
+              <div class="chip" data-value="calm">Calm</div>
+              <div class="chip" data-value="exhausted">Exhausted</div>
+              <div class="chip" data-value="defeated">Defeated</div>
             </div>
           </div>
 
@@ -130,22 +118,20 @@ export const review = {
     if (close) close.addEventListener('click', closeModal);
     if (overlay) overlay.addEventListener('click', closeModal);
 
-    // Chip selection
-    const chipGroup = document.getElementById('review-training');
-    if (chipGroup) {
-      chipGroup.querySelectorAll('.chip').forEach((chip) => {
+    // Chip selection (generic handler for all chip groups)
+    const chipGroups = document.querySelectorAll('.chip-group');
+    chipGroups.forEach(group => {
+      group.querySelectorAll('.chip').forEach((chip) => {
         chip.addEventListener('click', () => {
-          chipGroup.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
+          group.querySelectorAll('.chip').forEach((c) => c.classList.remove('active'));
           chip.classList.add('active');
         });
       });
-    }
+    });
 
     // Slider updates
     const sliders = [
-      { id: 'review-fueling', valId: 'fueling-val' },
-      { id: 'review-stress', valId: 'stress-val' },
-      { id: 'review-momentum', valId: 'momentum-val' }
+      { id: 'review-fueling', valId: 'fueling-val' }
     ];
 
     sliders.forEach(s => {
@@ -205,9 +191,8 @@ export const review = {
   save() {
     const data = {
       training: document.querySelector('#review-training .chip.active')?.dataset.value || null,
+      emotion: document.querySelector('#review-emotion .chip.active')?.dataset.value || null,
       fueling: parseInt(document.getElementById('review-fueling')?.value) || 3,
-      stress: parseInt(document.getElementById('review-stress')?.value) || 2,
-      momentum: parseInt(document.getElementById('review-momentum')?.value) || 4,
       reflection: document.getElementById('review-reflection')?.value || '',
       timestamp: new Date().toISOString(),
     };
