@@ -77,31 +77,33 @@ export const dashboard = {
 
     return `
       <div class="dash-hero animate-in">
-        <div class="dash-hero__ring">
-          <div class="readiness-ring">
-            <svg class="readiness-ring__svg" viewBox="0 0 120 120">
-              <circle class="readiness-ring__bg" cx="60" cy="60" r="${radius}" />
-              <circle
-                class="readiness-ring__progress"
-                cx="60" cy="60" r="${radius}"
-                stroke-dasharray="${circumference}"
-                stroke-dashoffset="${offset}"
-                style="--ring-circumference: ${circumference}; --ring-offset: ${offset};"
-              />
-            </svg>
-            <div class="readiness-ring__center">
-              <span class="readiness-ring__score">${score}</span>
-              <span class="readiness-ring__label">Ready</span>
+        <div class="dash-hero__header">
+          <div class="dash-hero__ring">
+            <div class="readiness-ring">
+              <svg class="readiness-ring__svg" viewBox="0 0 120 120">
+                <circle class="readiness-ring__bg" cx="60" cy="60" r="${radius}" />
+                <circle
+                  class="readiness-ring__progress"
+                  cx="60" cy="60" r="${radius}"
+                  stroke-dasharray="${circumference}"
+                  stroke-dashoffset="${offset}"
+                  style="--ring-circumference: ${circumference}; --ring-offset: ${offset};"
+                />
+              </svg>
+              <div class="readiness-ring__center">
+                <span class="readiness-ring__score">${score}</span>
+                <span class="readiness-ring__label">READY</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="dash-hero__info">
-          <div class="dash-hero__status">
-            <div class="status-dot green"></div>
-            <span class="dash-hero__status-text">${label} — Ready to train</span>
-          </div>
-          <div class="dash-hero__subtitle">
-            Your readiness is based on sleep, recovery, training load, and how your body feels today.
+          <div class="dash-hero__info">
+            <div class="dash-hero__status">
+              <div class="status-dot green"></div>
+              <span class="dash-hero__status-text">RECOVERY: ${label}</span>
+            </div>
+            <div class="dash-hero__subtitle">
+              Based on sleep, load, and nervous system state.
+            </div>
           </div>
         </div>
       </div>
@@ -165,7 +167,8 @@ export const dashboard = {
     return `
       <div class="dash-insight">
         <div class="insight-card">
-          <div class="insight-card__headline">${insight.headline}</div>
+          <div class="insight-card__headline" style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: var(--tracking-wide);">Intelligence</div>
+          <div class="insight-card__headline" style="margin-bottom: var(--space-4);">${insight.headline}</div>
           <div class="insight-card__reasons">
             ${reasons}
             ${positives}

@@ -63,7 +63,7 @@ export const mockPreparation = [
   },
   {
     id: 'mental',
-    label: 'Mental',
+    label: 'Mental Readiness',
     question: 'Are you focused and emotionally ready?',
     score: 80,
     status: 'good',
@@ -78,7 +78,7 @@ export const mockReadiness = {
   trend: 'up',
   label: 'Good',
   insight: {
-    headline: 'You might feel slightly flat today',
+    headline: "Here's why you feel this way",
     reasons: [
       { signal: 'Sleep dropped', detail: '6h 20m vs 8h avg', impact: 'negative' },
       { signal: 'Training load spiked', detail: '9.1/10 yesterday', impact: 'negative' },
@@ -117,7 +117,7 @@ export const mockTodayActions = [
   },
   {
     id: 'action_2',
-    title: 'Drink 4 more glasses of water',
+    title: 'Hydrate with electrolytes',
     subtitle: 'Hydration was low yesterday',
     category: 'nutrition',
     completed: false,
@@ -133,7 +133,7 @@ export const mockTodayActions = [
   },
   {
     id: 'action_4',
-    title: 'Recovery meal after workout',
+    title: 'Eat recovery meal after workout',
     subtitle: 'Protein + carbs within 30 min',
     category: 'nutrition',
     completed: true,
@@ -146,7 +146,7 @@ export const mockTimelineEvents = [
   {
     id: 'evt_1',
     type: 'run',
-    title: 'Morning Run',
+    title: 'Morning Run completed',
     detail: '6.2 mi · 48:23 · Easy',
     time: 'Today, 6:30 AM',
     icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
@@ -154,34 +154,26 @@ export const mockTimelineEvents = [
   {
     id: 'evt_2',
     type: 'checkin',
-    title: 'Morning Check-in',
-    detail: 'Sleep 6.3h · HR 52 · Mood 4/5',
+    title: 'Sleep improved',
+    detail: 'Quality score: 88 · +45m deep sleep',
     time: 'Today, 6:15 AM',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
-  },
-  {
-    id: 'evt_3',
-    type: 'sleep',
-    title: 'Sleep Logged',
-    detail: '6h 20m · Below average',
-    time: 'Last night',
     icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
   },
   {
-    id: 'evt_4',
-    type: 'strength',
-    title: 'Strength Session',
-    detail: 'Lower body · 45 min',
-    time: 'Yesterday, 4:00 PM',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" y1="21" x2="20" y2="21"/><line x1="12" y1="16" x2="12" y2="21"/></svg>`,
+    id: 'evt_3',
+    type: 'mobility',
+    title: 'Mobility session',
+    detail: 'Lower body · 15 min routine',
+    time: 'Today, 8:00 AM',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
   },
   {
-    id: 'evt_5',
-    type: 'note',
-    title: 'Reflection',
-    detail: 'Legs felt heavy after tempo. Need more sleep.',
+    id: 'evt_4',
+    type: 'nutrition',
+    title: 'Hydration low',
+    detail: '4 glasses vs 8 target',
     time: 'Yesterday, 9:00 PM',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
   },
 ];
 
